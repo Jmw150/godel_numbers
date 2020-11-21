@@ -1,6 +1,7 @@
 # Very simple compilers from Gödel numbers to FOL and back
 
-         
+
+# some helper functions before starting
 def is_prime(p) :
     "predicate function checking for primeness of input"
 
@@ -89,6 +90,8 @@ def parse_number(exp) :
     return n,i
 
 
+
+# Start of the compilers
 def godel_to_fol(exp, latex=False) :
     """Gödel_number -> FOL
         Assuming Gödel numbers are small
@@ -115,6 +118,7 @@ def godel_to_fol(exp, latex=False) :
     exp = str(exp).replace('^','**')
     exp = str(exp).replace('{','(').replace('}',')')
     exp = eval(str(exp)) # still some injection attack oportunity
+                         # could replace with another library
 
     # base cases
     if exp == 3 : return gd_map[str(exp)]
@@ -173,6 +177,8 @@ def fol_to_godel(exp, latex=False) :
         Will parse FOL up until syntax mismatch
 
        Mind the mess"""
+
+    
     g_number = []
     
     # extending this function to a number version of an error code
@@ -259,14 +265,15 @@ def fol_to_godel(exp, latex=False) :
         total = total.replace('{','(').replace('}',')')
         return total
             
-
+# test code
 def test(n) :
     " test if g(g^-1(x)) == x"
+
     for i in range(1,n) :
+
         # the eval(x) turns arithmetic into a number
-        a = fol_to_godel(godel_to_fol(i))
-        a = eval(a)
-        if not (a == i or a == -1) :
+        num = eval(fol_to_godel(godel_to_fol(i)))
+        if not (num == i or num == -1) :
             return i
 
     return True
