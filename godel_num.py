@@ -117,7 +117,7 @@ def godel_to_fol(exp, latex=False) :
     exp = str(exp).replace('\\cdot','*')
     exp = str(exp).replace('^','**')
     exp = str(exp).replace('{','(').replace('}',')')
-    exp = eval(str(exp)) # still some injection attack oportunity
+    exp = eval(str(exp)) # still some injection attack opportunity
                          # could replace with another library
 
     # base cases
