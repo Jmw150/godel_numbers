@@ -172,7 +172,7 @@ def godel_to_fol(exp, latex=False) :
 def fol_to_godel(exp, latex=False) :
     """FOL -> Gödel_number 
         This is pretty much just a bunch of in-place
-        parser combinators. 
+        parsers. 
 
         Will parse FOL up until syntax mismatch
 
